@@ -1,11 +1,12 @@
-require("dotenv").config();
-import express, { Application, NextFunction, Request, Response } from "express";
+import * as env from 'dotenv';
+import express, { type Application, type NextFunction, type Request, type Response } from 'express';
 
+env.config();
 const app: Application = express();
-const port: Number = parseInt(process.env.APP_PORT as string, 10);
+const port: number = parseInt(process.env.APP_PORT as string, 10);
 
-app.use("/hello", (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).send({ data: "Hello World!" });
+app.use('/hello', (req: Request, res: Response, next: NextFunction) => {
+  res.status(200).send({ data: 'Hello World!' });
 });
 
-app.listen(port, () => console.log(`Tokopedia Play API is running on port ${port}`));
+app.listen(port, () => { console.log(`Tokopedia Play API is running on port ${port}`); });
