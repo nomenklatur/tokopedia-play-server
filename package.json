@@ -7,7 +7,7 @@
     "start": "npx tsc -w",
     "dev": "npm run lint && npx nodemon",
     "clean-install": "rm -rf node_modules && npm install",
-    "lint": "eslint --ext .ts src/ --fix",
+    "lint": "eslint --fix --ext .ts src/",
     "build": "tsc"
   },
   "author": "Dimas Eka Putra",
