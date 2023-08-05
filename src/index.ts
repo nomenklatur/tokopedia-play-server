@@ -1,6 +1,7 @@
 import * as env from 'dotenv';
 import express, { type Application, type NextFunction, type Request, type Response } from 'express';
 import routes from './routes';
+import { logger } from './utilities/logger';
 
 env.config();
 const app: Application = express();
@@ -12,4 +13,4 @@ app.use('/hello', (req: Request, res: Response, next: NextFunction) => {
 
 routes(app);
 
-app.listen(port, () => { console.log(`Tokopedia Play API is running on port ${port}`); });
+app.listen(port, () => { logger.info(`Tokopedia Play API is running on port ${port}`); });
