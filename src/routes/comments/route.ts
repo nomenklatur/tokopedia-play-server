@@ -1,10 +1,9 @@
-import { Router, type Request, type Response, type NextFunction } from 'express';
+import { Router } from 'express';
+import { createComment, getComments } from '../../controllers/comment_controller';
 
 const CommentRoute: Router = Router();
 
-CommentRoute.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200);
-  res.send({ data: 'this is a comment response' });
-});
+CommentRoute.get('/', getComments);
+CommentRoute.post('/', createComment);
 
 export default CommentRoute;

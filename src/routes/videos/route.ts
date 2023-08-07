@@ -1,10 +1,8 @@
-import { Router, type Request, type Response, type NextFunction } from 'express';
+import { Router } from 'express';
+import { getVideos } from '../../controllers/video_controller';
 
 const VideoRoutes: Router = Router();
 
-VideoRoutes.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200);
-  res.send({ data: 'this is a video response' });
-});
+VideoRoutes.get('/', getVideos);
 
 export default VideoRoutes;
