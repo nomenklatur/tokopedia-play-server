@@ -1,13 +1,10 @@
 import { type Response, type Request } from 'express';
+import { getAllVideosFromDB } from '../services/video_service';
 
-export function getVideos (req: Request, res: Response) {
+export async function getVideos (req: Request, res: Response) {
+  const data = await getAllVideosFromDB();
   return res.status(200).send({
     message: 'Ok',
-    data: [
-      {
-        video_url: 'someurl',
-        title: 'some title'
-      }
-    ]
+    data
   });
 }

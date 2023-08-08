@@ -1,5 +1,6 @@
 import * as env from 'dotenv';
 import express, { type Application, type NextFunction, type Request, type Response } from 'express';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import routes from './routes';
@@ -8,6 +9,16 @@ import { logger } from './utilities/logger';
 env.config();
 const app: Application = express();
 const port: number = parseInt(process.env.APP_PORT as string, 10);
+const db: string = process.env.MONGODB_CONNECTION as string;
+
+// database connection
+mongoose.connect(db).then(() => {
+  logger.info('Connected to MongoDB');
+}).catch((error) => {
+  logger.error('Could not connect to MongoDB');
+  logger.error(error);
+  process.exit(1);
+});
 
 // parse body request
 app.use(bodyParser.urlencoded({ extended: false }));

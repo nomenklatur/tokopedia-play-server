@@ -1,6 +1,7 @@
 import { type Request, type Response } from 'express';
 import { createValidation } from '../validations/comment_validation';
 import { logger } from '../utilities/logger';
+import { getAllCommentsFromDB } from '../services/comment_service';
 
 export function createComment (req: Request, res: Response) {
   const { error } = createValidation(req.body);
@@ -19,8 +20,10 @@ export function createComment (req: Request, res: Response) {
   });
 }
 
-export function getComments (req: Request, res: Response) {
+export async function getComments (req: Request, res: Response) {
+  const data = await getAllCommentsFromDB();
   return res.status(200).send({
-    message: 'Ok'
+    message: 'Ok',
+    data
   });
 }
