@@ -1,10 +1,10 @@
 import { type Request, type Response } from 'express';
 import { createValidation } from '../validations/comment_validation';
 import { logger } from '../utilities/logger';
-import { getAllCommentsFromDB } from '../services/comment_service';
+import { getAllCommentsFromDB, insertCommentToDB } from '../services/comment_service';
 
-export function createComment (req: Request, res: Response) {
-  const { error } = createValidation(req.body);
+export async function createComment (req: Request, res: Response) {
+  const { error, value } = createValidation(req.body);
 
   if (error) {
     logger.error('Comment Validation Error:');
@@ -13,11 +13,16 @@ export function createComment (req: Request, res: Response) {
     });
   }
 
-  logger.info('New comment created');
-  return res.status(200).send({
-    message: 'New comment created!',
-    data: req.body
-  });
+  try {
+    await insertCommentToDB(value);
+    return res.status(200).send({
+      message: 'New comment created!'
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: error
+    });
+  }
 }
 
 export async function getComments (req: Request, res: Response) {
