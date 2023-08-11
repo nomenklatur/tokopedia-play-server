@@ -8,3 +8,7 @@ export async function getAllVideosFromDB () {
     logger.error(err);
   });
 }
+
+export async function getVideoByIdFromDB (id: string) {
+  return await videoModel.findOne({ video_id: id });
+}
