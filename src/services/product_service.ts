@@ -8,3 +8,9 @@ export async function getAllProductsFromDB () {
     logger.error(err);
   });
 }
+
+export async function updateProductFromDB (productId: string, payload: any) {
+  return await productModel.findOneAndUpdate({
+    product_id: productId
+  }, payload);
+}
