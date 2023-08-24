@@ -8,3 +8,9 @@ export interface ProductPayload {
   name: string
   price: number
 }
+
+export interface RegisterUserPayload {
+  fullname: string
+  email: string
+  password: string
+}
