@@ -24,7 +24,13 @@ export async function updateProduct (req: Request, res: Response) {
     });
   }
 
-  await updateProductFromDB(id, value);
+  const result = await updateProductFromDB(id, value);
+
+  if (!result) {
+    return res.status(404).send({
+      message: 'Product not found'
+    });
+  }
 
   return res.status(200).send({
     message: 'Success'
