@@ -1,7 +1,7 @@
 import { type Request, type Response } from 'express';
 import { createValidation } from '../validations/comment_validation';
 import { logger } from '../utilities/logger';
-import { getAllCommentsFromDB, insertCommentToDB } from '../services/comment_service';
+import { getAllCommentsFromDB, insertCommentToDB, deleteCommentFromDB } from '../services/comment_service';
 
 export async function createComment (req: Request, res: Response) {
   const { error, value } = createValidation(req.body);
@@ -30,5 +30,20 @@ export async function getComments (req: Request, res: Response) {
   return res.status(200).send({
     message: 'Ok',
     data
+  });
+}
+
+export async function deleteComment (req: Request, res: Response) {
+  const { id } = req.params;
+  const result = await deleteCommentFromDB(id);
+
+  if (!result) {
+    return res.status(404).send({
+      message: 'Comment not found'
+    });
+  }
+
+  return res.status(200).send({
+    message: 'Comment deleted'
   });
 }

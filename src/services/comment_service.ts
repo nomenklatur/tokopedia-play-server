@@ -16,3 +16,7 @@ export async function insertCommentToDB (payload: CommentPayload) {
   const commentId = uuidV4();
   return await commentModel.create({ comment_id: commentId, username, comment });
 }
+
+export async function deleteCommentFromDB (id: string) {
+  return await commentModel.findOneAndDelete({ comment_id: id });
+}
