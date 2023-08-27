@@ -1,9 +1,9 @@
 import { type Application } from 'express';
-import { type Routes } from 'src/interfaces/routes';
-import VideoRoutes from './videos/route';
-import ProductRoutes from './products/route';
-import CommentRoutes from './comments/route';
-import UserRoutes from './user/route';
+import { type Routes } from '../interfaces/common';
+import VideoRoutes from './video_route';
+import ProductRoutes from './product_route';
+import CommentRoutes from './comment_route';
+import UserRoutes from './user_route';
 
 const _routes: Routes[] = [
   { url: '/user', router: UserRoutes },

@@ -4,7 +4,7 @@ import { verifyToken } from '../utilities/tokenizing';
 async function authenticate (req: Request, res: Response, next: NextFunction) {
   const accessToken = req.headers.authorization?.replace(/^Bearer\s+/i, '');
   if (!accessToken) {
-    return res.status(401).send({
+    return res.status(403).send({
       message: 'You don\'t have access'
     });
   }
@@ -12,7 +12,7 @@ async function authenticate (req: Request, res: Response, next: NextFunction) {
   const { context } = verifyToken(accessToken);
 
   if (!context) {
-    return res.status(401).send({
+    return res.status(403).send({
       message: 'Invalid Token'
     });
   }

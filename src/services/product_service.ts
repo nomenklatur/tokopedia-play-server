@@ -1,5 +1,6 @@
 import { logger } from '../utilities/logger';
 import productModel from '../models/product_model';
+import { type ProductPayload } from '../interfaces/product_types';
 
 export async function getAllProductsFromDB () {
   return await productModel.find().then((data) => {
@@ -9,7 +10,7 @@ export async function getAllProductsFromDB () {
   });
 }
 
-export async function updateProductFromDB (productId: string, payload: any) {
+export async function updateProductFromDB (productId: string, payload: ProductPayload) {
   return await productModel.findOneAndUpdate({
     product_id: productId
   }, payload);

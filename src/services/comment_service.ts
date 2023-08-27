@@ -1,5 +1,5 @@
 import commentModel from '../models/comment_model';
-import { type CommentPayload } from '../interfaces/payloads';
+import { type CommentPayload } from '../interfaces/comment_types';
 import { v4 as uuidV4 } from 'uuid';
 import { logger } from '../utilities/logger';
 

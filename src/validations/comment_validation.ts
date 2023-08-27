@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { type CommentPayload } from '../interfaces/payloads';
+import { type CommentPayload } from '../interfaces/comment_types';
 
 export const createValidation = (payload: CommentPayload) => {
   const schema = Joi.object({

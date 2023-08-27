@@ -2,7 +2,7 @@ import { type Response, type Request } from 'express';
 import { createUser, validateUser } from '../services/user_service';
 import { registerUserValidation, authUserValidation } from '../validations/user_validation';
 import { logger } from '../utilities/logger';
-import type ServiceResponse from '../interfaces/responses';
+import type ServiceResponse from '../interfaces/common';
 
 export async function register (req: Request, res: Response) {
   const { body: payload } = req;

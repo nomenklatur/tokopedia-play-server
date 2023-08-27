@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, createSession } from '../../controllers/user_controller';
+import { register, createSession } from '../controllers/user_controller';
 
 const UserRoutes: Router = Router();
 

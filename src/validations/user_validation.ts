@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { type RegisterUserPayload, type AuthUserPayload } from '../interfaces/user_type';
+import { type RegisterUserPayload, type AuthUserPayload } from '../interfaces/user_types';
 
 export const registerUserValidation = (payload: RegisterUserPayload) => {
   const schema = Joi.object({

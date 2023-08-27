@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getVideos, getVideo } from '../../controllers/video_controller';
+import { getVideos, getVideo } from '../controllers/video_controller';
 
 const VideoRoutes: Router = Router();
 

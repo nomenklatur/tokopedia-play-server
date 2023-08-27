@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { type ProductPayload } from '../interfaces/payloads';
+import { type ProductPayload } from '../interfaces/product_types';
 
 export const updateValidation = (payload: ProductPayload) => {
   const schema = Joi.object({
