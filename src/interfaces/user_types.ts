@@ -16,3 +16,7 @@ export interface AuthUserPayload {
   email: string
   password: string
 }
+
+export interface RefreshSessionPayload {
+  refresh_token: string
+}

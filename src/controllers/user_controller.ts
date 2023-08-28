@@ -1,8 +1,9 @@
 import { type Response, type Request } from 'express';
 import { createUser, validateUser } from '../services/user_service';
-import { registerUserValidation, authUserValidation } from '../validations/user_validation';
+import { registerUserValidation, authUserValidation, refreshSessionValidation } from '../validations/user_validation';
 import { logger } from '../utilities/logger';
 import type ServiceResponse from '../interfaces/common';
+import { regenerateToken } from '../utilities/tokenizing';
 
 export async function register (req: Request, res: Response) {
   const { body: payload } = req;
@@ -47,6 +48,29 @@ export async function createSession (req: Request, res: Response) {
   } catch (error) {
     console.log(error);
     return res.status(500).send({
+      message: error
+    });
+  }
+}
+
+export async function refreshSession (req: Request, res: Response) {
+  const { body: payload } = req;
+  const { error, value } = refreshSessionValidation(payload);
+
+  if (error) {
+    logger.error('Validation Error:');
+    return res.status(422).send({
+      message: error.details[0].message
+    });
+  }
+
+  try {
+    const tokens = await regenerateToken(value.refresh_token);
+    res.status(200).send({
+      data: tokens
+    });
+  } catch (error) {
+    res.status(500).send({
       message: error
     });
   }
